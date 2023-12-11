@@ -1,0 +1,47 @@
+{"firstname": "user",
+"lastname": "user",
+"userName": "user",
+"email": "user@gmail.com",
+"password": "user",
+"role": "STUDENTS"}
+
+
+
+{
+"email": "user@gmail.com",
+"password": "user",
+}
+
+
+
+{"firstname": "parent",
+"lastname": "parent",
+"userName": "parent",
+"email": "parent@gmail.com",
+"password": "parent",
+"role": "PARENTS"}
+
+
+
+{"firstname": "parent1",
+"lastname": "parent1",
+"userName": "parent1",
+"email": "parent1@gmail.com",
+"password": "parent1",
+"role": "PARENTS"}
+
+// username exist
+{"firstname": "parent1000",
+"lastname": "parent1000",
+"userName": "parent1",
+"email": "parent1000@gmail.com",
+"password": "parent1000",
+"role": "PARENTS"}
+
+// email exist
+{"firstname": "parent2",
+"lastname": "parent2",
+"userName": "parent2",
+"email": "parent1@gmail.com",
+"password": "parent2",
+"role": "PARENTS"}

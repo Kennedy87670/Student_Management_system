@@ -1,5 +1,8 @@
 package com.admin_student.spring_studentMs.auth;
 
+import com.admin_student.spring_studentMs.entity.Role;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +23,7 @@ public class RegisterRequest {
 
     private String password;
 
-    private String userType;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

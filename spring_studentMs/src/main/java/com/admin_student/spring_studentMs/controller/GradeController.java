@@ -1,8 +1,11 @@
 package com.admin_student.spring_studentMs.controller;
 
 
+import com.admin_student.spring_studentMs.service.GradeService;
 import lombok.AllArgsConstructor;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
@@ -12,6 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/grade")
 public class GradeController {
+    private final GradeService gradeService;
+
+    @GetMapping("/compute")
+    public ResponseEntity<String> computeGrade(@RequestParam Double score) {
+        String result = gradeService.computeGrade(score);
+        return ResponseEntity.ok(result);
+    }
+
     
 //    GradeService gradeService;
 //

@@ -1,6 +1,5 @@
 package com.admin_student.spring_studentMs.dto;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AdminDto {
+public class StaffDto {
 
     private  Long id;
 

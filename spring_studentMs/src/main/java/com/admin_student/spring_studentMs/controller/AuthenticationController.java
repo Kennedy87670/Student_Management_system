@@ -3,6 +3,8 @@ package com.admin_student.spring_studentMs.controller;
 import com.admin_student.spring_studentMs.auth.AuthenticationRequest;
 import com.admin_student.spring_studentMs.auth.AuthenticationResponse;
 import com.admin_student.spring_studentMs.auth.RegisterRequest;
+import com.admin_student.spring_studentMs.errorAndException.UserEmailExistException;
+import com.admin_student.spring_studentMs.errorAndException.UserNameExistException;
 import com.admin_student.spring_studentMs.service.AuthenticationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
-    ){
+    ) throws UserEmailExistException, UserNameExistException {
         return ResponseEntity.ok(service.register(request));
     }
 

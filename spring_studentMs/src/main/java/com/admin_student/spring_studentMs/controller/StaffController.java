@@ -1,19 +1,18 @@
 package com.admin_student.spring_studentMs.controller;
 
-import com.admin_student.spring_studentMs.dto.AdminDto;
+import com.admin_student.spring_studentMs.dto.StaffDto;
 import com.admin_student.spring_studentMs.dto.ParentsDto;
 import com.admin_student.spring_studentMs.dto.StudentDto;
-import com.admin_student.spring_studentMs.entity.Admin;
 import com.admin_student.spring_studentMs.entity.Parents;
+import com.admin_student.spring_studentMs.entity.Staff;
 import com.admin_student.spring_studentMs.entity.Students;
-import com.admin_student.spring_studentMs.errorAndException.AdminNotFoundException;
+import com.admin_student.spring_studentMs.errorAndException.StaffNotFoundException;
 import com.admin_student.spring_studentMs.errorAndException.ParentNotFoundException;
 import com.admin_student.spring_studentMs.errorAndException.StudentNotFoundException;
-import com.admin_student.spring_studentMs.mapper.AdminMapper;
+import com.admin_student.spring_studentMs.mapper.StaffMapper;
 import com.admin_student.spring_studentMs.mapper.ParentMapper;
 import com.admin_student.spring_studentMs.mapper.StudentMapper;
-import com.admin_student.spring_studentMs.repository.StudentsRepository;
-import com.admin_student.spring_studentMs.service.AdminService;
+import com.admin_student.spring_studentMs.service.StaffService;
 import com.admin_student.spring_studentMs.service.ParentService;
 import com.admin_student.spring_studentMs.service.StudentService;
 import jakarta.validation.Valid;
@@ -27,44 +26,44 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/admins")
-public class AdminController {
-    private final AdminService adminService;
+@RequestMapping("/staff")
+public class StaffController {
+    private final StaffService staffService;
     private final StudentService studentService;
     private final ParentService parentService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<AdminDto> getAdminById(@PathVariable("id") Long adminId) throws AdminNotFoundException {
-        Optional<AdminDto> admin = adminService.getAdminById(adminId);
+    public ResponseEntity<StaffDto> getAdminById(@PathVariable("id") Long adminId) throws StaffNotFoundException {
+        Optional<StaffDto> admin = staffService.getAdminById(adminId);
         if (admin.isPresent()) {
             return new ResponseEntity<>(admin.get(), HttpStatus.OK);
         } else {
-            throw new AdminNotFoundException("Admin not found with id: " + adminId);
+            throw new StaffNotFoundException("Staff not found with id: " + adminId);
         }
     }
 
     @PostMapping("/save")
-    public ResponseEntity<AdminDto> saveAdmin(@Valid @RequestBody AdminDto adminDto) {
-        Admin savedAdmin = adminService.save(AdminMapper.mapToAdmin(adminDto));
-        return new ResponseEntity<>(AdminMapper.mapToAdminDto(savedAdmin), HttpStatus.CREATED);
+    public ResponseEntity<StaffDto> saveAdmin(@Valid @RequestBody StaffDto staffDto) {
+        Staff savedStaff = staffService.save(StaffMapper.mapToAdmin(staffDto));
+        return new ResponseEntity<>(StaffMapper.mapToAdminDto(savedStaff), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAdminById(@PathVariable("id") Long adminId) {
-        adminService.deleteAdminById(adminId);
-        return new ResponseEntity<>("Admin successfully deleted", HttpStatus.OK);
+        staffService.deleteAdminById(adminId);
+        return new ResponseEntity<>("Staff successfully deleted", HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Admin>> getAdminsList() {
-        List<Admin> admins = adminService.getAllAdmins();
-        return new ResponseEntity<>(admins, HttpStatus.OK);
+    public ResponseEntity<List<Staff>> getAdminsList() {
+        List<Staff> staff = staffService.getAllAdmins();
+        return new ResponseEntity<>(staff, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AdminDto> updateAdminById(@PathVariable("id") Long adminId,
-                                                    @RequestBody AdminDto updatedAdminDto) throws AdminNotFoundException {
-        AdminDto updatedAdmin = adminService.updateAdminById(adminId, updatedAdminDto);
+    public ResponseEntity<StaffDto> updateAdminById(@PathVariable("id") Long adminId,
+                                                    @RequestBody StaffDto updatedStaffDto) throws StaffNotFoundException {
+        StaffDto updatedAdmin = staffService.updateAdminById(adminId, updatedStaffDto);
         return ResponseEntity.ok(updatedAdmin);
     }
 

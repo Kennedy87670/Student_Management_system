@@ -55,14 +55,43 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 .body(message);
     }
 
-    @ExceptionHandler(AdminNotFoundException.class)
+    @ExceptionHandler(StaffNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorResponse> handleAdminNotFoundException(AdminNotFoundException exception, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleAdminNotFoundException(StaffNotFoundException exception, WebRequest request) {
         LocalDateTime timestamp = LocalDateTime.now();
         ErrorResponse message = new ErrorResponse(timestamp, HttpStatus.NOT_FOUND, Collections.singletonList(exception.getMessage()));
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(message);
     }
+
+    @ExceptionHandler(UserEmailExistException.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    public ResponseEntity<ErrorResponse> handleUserEmailExistException(UserEmailExistException exception, WebRequest request){
+        LocalDateTime timestamp = LocalDateTime.now();
+        ErrorResponse message = new ErrorResponse(timestamp, HttpStatus.FOUND, Collections.singletonList(exception.getMessage()));
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(message);
+    }
+
+    @ExceptionHandler(UserNameExistException.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    public ResponseEntity<ErrorResponse> handleUserNameExistException(UserNameExistException exception, WebRequest request){
+        LocalDateTime timestamp = LocalDateTime.now();
+        ErrorResponse message = new ErrorResponse(timestamp, HttpStatus.FOUND, Collections.singletonList(exception.getMessage()));
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .body(message);
+    }
+
+
+    @ExceptionHandler(ScoreNotFoundException.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    public ResponseEntity<ErrorResponse> handleScoreNotFoundException(ScoreNotFoundException exception, WebRequest request){
+        LocalDateTime timestamp = LocalDateTime.now();
+        ErrorResponse message = new ErrorResponse(timestamp, HttpStatus.NOT_FOUND, Collections.singletonList(exception.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(message);
+    }
+
 
 
 }

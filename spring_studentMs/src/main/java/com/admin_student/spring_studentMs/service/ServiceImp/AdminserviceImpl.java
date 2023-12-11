@@ -1,11 +1,11 @@
 package com.admin_student.spring_studentMs.service.ServiceImp;
 
-import com.admin_student.spring_studentMs.dto.AdminDto;
-import com.admin_student.spring_studentMs.entity.Admin;
-import com.admin_student.spring_studentMs.errorAndException.AdminNotFoundException;
-import com.admin_student.spring_studentMs.mapper.AdminMapper;
-import com.admin_student.spring_studentMs.repository.AdminRepository;
-import com.admin_student.spring_studentMs.service.AdminService;
+import com.admin_student.spring_studentMs.dto.StaffDto;
+import com.admin_student.spring_studentMs.entity.Staff;
+import com.admin_student.spring_studentMs.errorAndException.StaffNotFoundException;
+import com.admin_student.spring_studentMs.mapper.StaffMapper;
+import com.admin_student.spring_studentMs.repository.StaffRepository;
+import com.admin_student.spring_studentMs.service.StaffService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,50 +14,50 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class AdminserviceImpl implements AdminService {
+public class AdminserviceImpl implements StaffService {
 
-    private final AdminRepository adminRepository;
+    private final StaffRepository staffRepository;
 
     @Override
-    public Optional<AdminDto> getAdminById(Long adminId) throws AdminNotFoundException {
-        return adminRepository.findById(adminId)
-                .map(AdminMapper::mapToAdminDto);
+    public Optional<StaffDto> getAdminById(Long adminId) throws StaffNotFoundException {
+        return staffRepository.findById(adminId)
+                .map(StaffMapper::mapToAdminDto);
     }
 
     @Override
-    public Admin save(Admin admin) {
-        return adminRepository.save(admin);
+    public Staff save(Staff staff) {
+        return staffRepository.save(staff);
     }
 
     @Override
     public void deleteAdminById(Long adminId) {
-        adminRepository.deleteById(adminId);
+        staffRepository.deleteById(adminId);
     }
 
     @Override
-    public List<Admin> getAllAdmins() {
-        return adminRepository.findAll();
+    public List<Staff> getAllAdmins() {
+        return staffRepository.findAll();
     }
 
     @Override
-    public AdminDto updateAdminById(Long adminId, AdminDto adminDto) throws AdminNotFoundException {
-        Optional<Admin> optionalAdmin = adminRepository.findById(adminId);
+    public StaffDto updateAdminById(Long adminId, StaffDto staffDto) throws StaffNotFoundException {
+        Optional<Staff> optionalAdmin = staffRepository.findById(adminId);
 
         if (optionalAdmin.isPresent()) {
-            Admin admin = optionalAdmin.get();
+            Staff staff = optionalAdmin.get();
 
-            admin.setFirstName(adminDto.getFirstName());
-            admin.setLastName(adminDto.getLastName());
-            admin.setUserName(adminDto.getUserName());
-            admin.setEmail(adminDto.getEmail());
+            staff.setFirstName(staffDto.getFirstName());
+            staff.setLastName(staffDto.getLastName());
+            staff.setUserName(staffDto.getUserName());
+            staff.setEmail(staffDto.getEmail());
 
-            // Save the updated admin
-            adminRepository.save(admin);
+            // Save the updated staff
+            staffRepository.save(staff);
 
-            return AdminMapper.mapToAdminDto(admin);
+            return StaffMapper.mapToAdminDto(staff);
 
         } else {
-            throw new AdminNotFoundException("Admin not found with id: " + adminId);
+            throw new StaffNotFoundException("Staff not found with id: " + adminId);
         }
     }
 }
