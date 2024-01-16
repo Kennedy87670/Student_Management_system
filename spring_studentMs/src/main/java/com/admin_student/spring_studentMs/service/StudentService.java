@@ -17,7 +17,7 @@ public interface StudentService {
 
   public void deleteStudentById(Long studentId);
 
-   public List<Students> getAllStudents();
+   public List<StudentDto> getAllStudents();
 
     StudentDto updateStudentById(Long studentId, StudentDto studentDto) throws StudentNotFoundException;
 

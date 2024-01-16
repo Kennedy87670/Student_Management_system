@@ -101,7 +101,7 @@ public class StaffController {
     @GetMapping("/student/all")
     public ResponseEntity<List<Students>> getStudentsList() {
 
-        List<Students> students = studentService.getAllStudents();
+        List<StudentDto> students = studentService.getAllStudents();
 
         return new ResponseEntity<>(students, HttpStatus.OK);
 
